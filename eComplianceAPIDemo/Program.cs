@@ -6,7 +6,7 @@ namespace eComplianceAPIDemo
 {
     class Program
     {
-        static void Main(string[] args)
+        static void Main()
         {
             new Program().Run();
         }
@@ -17,7 +17,6 @@ namespace eComplianceAPIDemo
         public Program()
         {
             configuration = new APIConfiguration();
-            configuration.Server = "https://rcapi.ecompliance.com";
         }
 
         private void Run()
@@ -26,6 +25,9 @@ namespace eComplianceAPIDemo
             LogIn();
             ChooseSite();
             DisplaySites();
+            DisplayForms(FormTypes.Inspections);
+            DisplayForms(FormTypes.Meetings);
+            DisplayForms(FormTypes.Incidents);
         }
 
         private void Configure()
@@ -68,9 +70,29 @@ namespace eComplianceAPIDemo
 
         private void DisplayOrg(OrganizationDto organization)
         {
-            Console.WriteLine("Organization: " + organization.Name);
+            WriteTitle("Sites in organization: " + organization.Name);
             foreach (var site in organization.Sites)
-                Console.WriteLine(" - " + site.Name);
+                Console.WriteLine(site.Name);
+        }
+
+        private void DisplayForms(string formType)
+        {
+            var forms = client.GetForms(formType);
+            WriteTitle(string.Format("{0} {1}", forms.PagingInfo.TotalNumberOfItems, formType));
+            foreach (var inspectionSummary in forms.Values)
+            {
+                Console.WriteLine("{0} {1}", inspectionSummary.CreatedDate, inspectionSummary.Title);
+            }
+
+            if (forms.PagingInfo.TotalNumberOfItems > forms.PagingInfo.PageSize)
+                Console.WriteLine("plus {0} more", forms.PagingInfo.TotalNumberOfItems - forms.PagingInfo.PageSize);
+        }
+
+        private static void WriteTitle(string text)
+        {
+            Console.WriteLine();
+            Console.WriteLine(text);
+            Console.WriteLine(new string('=', text.Length));
         }
 
         private bool IsEmailAddress(string identifier)

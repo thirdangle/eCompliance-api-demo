@@ -46,6 +46,7 @@
   <ItemGroup>
     <Compile Include="APIClient\APIConfiguration.cs" />
     <Compile Include="APIClient\EComplianceClient.cs" />
+    <Compile Include="FormTypes.cs" />
     <Compile Include="HttpHelper.cs" />
     <Compile Include="Models\AuthTokenResponse.cs" />
     <Compile Include="Program.cs" />

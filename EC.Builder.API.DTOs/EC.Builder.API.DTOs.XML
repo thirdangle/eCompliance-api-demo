@@ -1,0 +1,143 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>EC.Builder.API.DTOs</name>
+    </assembly>
+    <members>
+        <member name="T:EC.Builder.API.DTOs.Core.LinkDto">
+            <summary>
+            Provides a list of HATEOAS links which can be used for navigating the API
+            </summary>
+        </member>
+        <member name="P:EC.Builder.API.DTOs.Core.LinkDto.href">
+            <summary>
+            The URL for the link.
+            </summary>
+        </member>
+        <member name="P:EC.Builder.API.DTOs.Core.LinkDto.rel">
+            <summary>
+            Describes the purpose of the link.
+            </summary>
+        </member>
+        <member name="P:EC.Builder.API.DTOs.Core.LinkDto.method">
+            <summary>
+            The HTTP method that should be used: GET, PUT, POST, UPDATE, DELETE, etc.
+            </summary>
+        </member>
+        <member name="P:EC.Builder.API.DTOs.Core.ListingResponseDto`1.PagingInfo">
+            <summary>
+            Testing Description
+            </summary>
+        </member>
+        <member name="T:EC.Builder.API.DTOs.Core.PagingInfoDto">
+            <summary>
+            Provides information for results that are paged.
+            </summary>
+        </member>
+        <member name="P:EC.Builder.API.DTOs.Core.PagingInfoDto.PageNumber">
+            <summary>
+            Indicates what page number the results are from.
+            </summary>
+        </member>
+        <member name="P:EC.Builder.API.DTOs.Core.PagingInfoDto.PageCount">
+            <summary>
+            The total number of pages for the result set
+            </summary>
+        </member>
+        <member name="P:EC.Builder.API.DTOs.Core.PagingInfoDto.PageSize">
+            <summary>
+            The page size for the result set
+            </summary>
+        </member>
+        <member name="P:EC.Builder.API.DTOs.Core.PagingInfoDto.TotalNumberOfItems">
+            <summary>
+            The total number of items accross all pages
+            </summary>
+        </member>
+        <member name="P:EC.Builder.API.DTOs.Inspection.InspectionSummaryDto.Id">
+            <summary>
+            test
+            </summary>
+        </member>
+        <member name="P:EC.Builder.API.DTOs.Inspection.InspectionSummaryDto.Uuid">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:EC.Builder.API.DTOs.Inspection.InspectionSummaryDto.Title">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:EC.Builder.API.DTOs.Inspection.InspectionSummaryDto.SubTitle">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:EC.Builder.API.DTOs.Inspection.InspectionSummaryDto.Status">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:EC.Builder.API.DTOs.Inspection.InspectionSummaryDto.SignedOffDate">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:EC.Builder.API.DTOs.Inspection.InspectionSummaryDto.CreatedDate">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:EC.Builder.API.DTOs.Inspection.InspectionSummaryDto.Site">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:EC.Builder.API.DTOs.Inspection.InspectionSummaryDto.Owner">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:EC.Builder.API.DTOs.Inspection.InspectionSummaryDto.HasScoring">
+            <summary>
+            Indicates if scoring is enabled or disabled
+            </summary>
+        </member>
+        <member name="P:EC.Builder.API.DTOs.Inspection.InspectionSummaryDto.TotalScorePercentage">
+            <summary>
+            Indicates the total score as a percentage, provided scoring is enabled
+            </summary>
+        </member>
+        <member name="P:EC.Builder.API.DTOs.Inspection.InspectionSummaryDto.InspectionPassed">
+            <summary>
+            Indicates Pass/Fail based on the score
+            </summary>
+        </member>
+        <member name="P:EC.Builder.API.DTOs.Inspection.InspectionSummaryDto.Header">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:EC.Builder.API.DTOs.Inspection.InspectionResponseDto.Sections">
+            <summary>
+            A list of sections 
+            </summary>
+        </member>
+        <member name="P:EC.Builder.API.DTOs.Inspection.InspectionSectionDto.Title">
+            <summary>
+            The title of the section
+            </summary>
+        </member>
+        <member name="P:EC.Builder.API.DTOs.Inspection.InspectionSectionDto.Questions">
+            <summary>
+            A list of questions
+            </summary>
+        </member>
+        <member name="P:EC.Builder.API.DTOs.Inspection.InspectionSectionDto.Id">
+            <summary>
+            The section's ID
+            </summary>
+        </member>
+    </members>
+</doc>

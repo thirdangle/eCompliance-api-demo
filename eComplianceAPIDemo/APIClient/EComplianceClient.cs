@@ -2,6 +2,7 @@
 using System.Collections.Specialized;
 using System.Text;
 using eComplianceAPIDemo.Models;
+using EC.Builder.API.DTOs.Inspection;
 using EC.Builder.API.DTOs.Site;
 using Newtonsoft.Json;
 
@@ -24,6 +25,14 @@ namespace eComplianceAPIDemo.APIClient
             var response = httpHelper.DownloadData(url);
             var responseString = Encoding.UTF8.GetString(response);
             return JsonConvert.DeserializeObject<SiteListingResponseDto>(responseString);
+        }
+
+        public InspectionListingResponseDto GetForms(string formType)
+        {
+            var url = configuration.Server + "/" + formType;
+            var response = httpHelper.DownloadData(url);
+            var responseString = Encoding.UTF8.GetString(response);
+            return JsonConvert.DeserializeObject<InspectionListingResponseDto>(responseString);
         }
 
         public void Authenticate()
