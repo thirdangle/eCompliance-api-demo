@@ -55,7 +55,12 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\EC.Builder.API.DTOs\eComplianceAPIDTOs.csproj">
+      <Project>{61b8e338-92dd-43d4-9fda-c9a1def8d3ff}</Project>
+      <Name>eComplianceAPIDTOs</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

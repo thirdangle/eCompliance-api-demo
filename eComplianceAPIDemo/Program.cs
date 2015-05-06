@@ -1,5 +1,6 @@
 ﻿using System;
 using eComplianceAPIDemo.APIClient;
+using EC.Builder.API.DTOs.Site;
 
 namespace eComplianceAPIDemo
 {
@@ -23,6 +24,7 @@ namespace eComplianceAPIDemo
         {
             Configure();
             LogIn();
+            ChooseSite();
             DisplaySites();
         }
 
@@ -50,16 +52,32 @@ namespace eComplianceAPIDemo
             Console.WriteLine("Authentication successful");
         }
 
+        private void ChooseSite()
+        {
+            Console.WriteLine("Enter site ID");
+            var siteIdString = Console.ReadLine();
+            configuration.CurrentSiteId = long.Parse(siteIdString);
+        }
+
+        private void DisplaySites()
+        {
+            var sites = client.GetSites();
+            foreach (var site in sites.Values)
+                DisplayOrg(site);
+        }
+
+        private void DisplayOrg(OrganizationDto organization)
+        {
+            Console.WriteLine("Organization: " + organization.Name);
+            foreach (var site in organization.Sites)
+                Console.WriteLine(" - " + site.Name);
+        }
+
         private bool IsEmailAddress(string identifier)
         {
             // Not a real email validation, but API keys don't contain
             // the @ symbol, so close enough
             return identifier.Contains("@");
-        }
-
-        private void DisplaySites()
-        {
-            client.GetSites();
         }
     }
 }

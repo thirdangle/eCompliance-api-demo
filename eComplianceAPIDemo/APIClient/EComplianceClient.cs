@@ -2,6 +2,7 @@
 using System.Collections.Specialized;
 using System.Text;
 using eComplianceAPIDemo.Models;
+using EC.Builder.API.DTOs.Site;
 using Newtonsoft.Json;
 
 namespace eComplianceAPIDemo.APIClient
@@ -17,8 +18,12 @@ namespace eComplianceAPIDemo.APIClient
             httpHelper = new HttpHelper(configuration);
         }
 
-        public void GetSites()
+        public SiteListingResponseDto GetSites()
         {
+            var url = configuration.Server + "/sites";
+            var response = httpHelper.DownloadData(url);
+            var responseString = Encoding.UTF8.GetString(response);
+            return JsonConvert.DeserializeObject<SiteListingResponseDto>(responseString);
         }
 
         public void Authenticate()
@@ -36,7 +41,7 @@ namespace eComplianceAPIDemo.APIClient
             {
                 { "username", configuration.Username },
                 { "password", configuration.Password },
-                { "grant_type", "password" }
+                { "grant_type", "password" } 
             });
         }
 
