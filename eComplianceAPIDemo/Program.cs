@@ -18,6 +18,7 @@ namespace eComplianceAPIDemo
         public Program(string server)
         {
             configuration = new APIConfiguration(server);
+            Console.WriteLine("Connecting to {0} ...", configuration.Server);
         }
 
         private void Run()

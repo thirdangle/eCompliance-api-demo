@@ -61,8 +61,9 @@ namespace eComplianceAPIDemo
         private static void HandleWebException(WebException e, string uri)
         {
             Console.WriteLine("Error while requesting " + uri);
-            using (var reader = new StreamReader(e.Response.GetResponseStream()))
-                Console.WriteLine(reader.ReadToEnd());
+            if (e.Response != null)
+                using (var reader = new StreamReader(e.Response.GetResponseStream()))
+                    Console.WriteLine(reader.ReadToEnd());
         }
     }
 }
