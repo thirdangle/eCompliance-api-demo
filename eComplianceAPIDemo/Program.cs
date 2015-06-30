@@ -6,17 +6,18 @@ namespace eComplianceAPIDemo
 {
     class Program
     {
-        static void Main()
+        static void Main(string[] args)
         {
-            new Program().Run();
+            var server = args.Length > 0 ? args[0] : null;
+            new Program(server).Run();
         }
 
         private readonly APIConfiguration configuration;
         private EComplianceClient client;
 
-        public Program()
+        public Program(string server)
         {
-            configuration = new APIConfiguration();
+            configuration = new APIConfiguration(server);
         }
 
         private void Run()

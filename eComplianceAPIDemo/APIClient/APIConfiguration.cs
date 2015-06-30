@@ -2,9 +2,9 @@
 {
     public class APIConfiguration
     {
-        public APIConfiguration()
+        public APIConfiguration(string server)
         {
-            Server = "https://api.ecompliance.com";
+            Server = server ?? "https://robotapi.ecompliance.com";
         }
 
         public string Username { get; set; }
