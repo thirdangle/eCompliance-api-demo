@@ -30,6 +30,7 @@ namespace eComplianceAPIDemo
             DisplayForms(FormTypes.Inspections);
             DisplayForms(FormTypes.Meetings);
             DisplayForms(FormTypes.Incidents);
+            DisplayEmployees();
         }
 
         private void Configure()
@@ -88,6 +89,19 @@ namespace eComplianceAPIDemo
 
             if (forms.PagingInfo.TotalNumberOfItems > forms.PagingInfo.PageSize)
                 Console.WriteLine("plus {0} more", forms.PagingInfo.TotalNumberOfItems - forms.PagingInfo.PageSize);
+        }
+
+        private void DisplayEmployees()
+        {
+            var employees = client.GetEmployees();
+            WriteTitle(string.Format("{0} employees", employees.PagingInfo.TotalNumberOfItems));
+            foreach (var employee in employees.Values)
+            {
+                Console.WriteLine("{0} {1} <{2}>", employee.FirstName, employee.LastName, employee.EmailAddress);
+            }
+
+            if (employees.PagingInfo.TotalNumberOfItems > employees.PagingInfo.PageSize)
+                Console.WriteLine("plus {0} more", employees.PagingInfo.TotalNumberOfItems - employees.PagingInfo.PageSize);
         }
 
         private static void WriteTitle(string text)
