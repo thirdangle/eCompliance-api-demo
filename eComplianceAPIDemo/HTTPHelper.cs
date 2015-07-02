@@ -63,7 +63,7 @@ namespace eComplianceAPIDemo
             Console.WriteLine("Error while requesting " + uri);
             if (e.Response != null)
                 using (var reader = new StreamReader(e.Response.GetResponseStream()))
-                    Console.WriteLine(reader.ReadToEnd());
+                    Console.WriteLine(reader.ReadToEnd().Replace(@"\r\n", "\n"));
         }
     }
 }
