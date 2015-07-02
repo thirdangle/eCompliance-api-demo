@@ -2,6 +2,7 @@
 using System.Collections.Specialized;
 using System.Text;
 using eComplianceAPIDemo.Models;
+using EC.Builder.API.DTOs.Employee;
 using EC.Builder.API.DTOs.Inspection;
 using EC.Builder.API.DTOs.Site;
 using Newtonsoft.Json;
@@ -33,6 +34,14 @@ namespace eComplianceAPIDemo.APIClient
             var response = httpHelper.DownloadData(url);
             var responseString = Encoding.UTF8.GetString(response);
             return JsonConvert.DeserializeObject<InspectionListingResponseDto>(responseString);
+        }
+
+        public EmployeeListingResponseDto GetEmployees()
+        {
+            var url = configuration.Server + "/employees";
+            var response = httpHelper.DownloadData(url);
+            var responseString = Encoding.UTF8.GetString(response);
+            return JsonConvert.DeserializeObject<EmployeeListingResponseDto>(responseString);
         }
 
         public void Authenticate()

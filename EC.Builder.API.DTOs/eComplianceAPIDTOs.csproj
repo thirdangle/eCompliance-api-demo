@@ -49,6 +49,14 @@
     <Compile Include="Core\ResponseDto.cs" />
     <Compile Include="Core\SortDto.cs" />
     <Compile Include="Core\UnauthorizedErrorDto.cs" />
+    <Compile Include="Employee\AddEmployeeDto.cs" />
+    <Compile Include="Employee\EmployeeDto.cs" />
+    <Compile Include="Employee\EmployeeImportResponseDto.cs" />
+    <Compile Include="Employee\EmployeeImportSummaryDto.cs" />
+    <Compile Include="Employee\EmployeeListingRequestDto.cs" />
+    <Compile Include="Employee\EmployeeListingResponseDto.cs" />
+    <Compile Include="Employee\EmployeeToImportRequestDto.cs" />
+    <Compile Include="Employee\UpdateEmployeeDto.cs" />
     <Compile Include="File\FileDto.cs" />
     <Compile Include="Inspection\ActionItemAttachmentFileDto.cs" />
     <Compile Include="Inspection\InspectionListingRequestDto.cs" />
