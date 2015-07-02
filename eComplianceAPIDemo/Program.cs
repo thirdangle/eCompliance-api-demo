@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using eComplianceAPIDemo.APIClient;
 using EC.Builder.API.DTOs.Site;
 
@@ -25,7 +26,6 @@ namespace eComplianceAPIDemo
         {
             Configure();
             LogIn();
-            ChooseSite();
             DisplaySites();
             DisplayForms(FormTypes.Inspections);
             DisplayForms(FormTypes.Meetings);
@@ -57,18 +57,21 @@ namespace eComplianceAPIDemo
             Console.WriteLine("Authentication successful");
         }
 
-        private void ChooseSite()
-        {
-            Console.WriteLine("Enter site ID");
-            var siteIdString = Console.ReadLine();
-            configuration.CurrentSiteId = long.Parse(siteIdString);
-        }
-
         private void DisplaySites()
         {
             var sites = client.GetSites();
+
+            var org = sites.Values.First();
+            var rootSite = org.Sites.First();
+            ChooseSite(rootSite.Id);
+
             foreach (var site in sites.Values)
                 DisplayOrg(site);
+        }
+
+        private void ChooseSite(long siteId)
+        {
+            configuration.CurrentSiteId = siteId;
         }
 
         private void DisplayOrg(OrganizationDto organization)
