@@ -1,8 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.IO;
 using System.Net;
+using System.Text;
 using eComplianceAPIDemo.APIClient;
+using EC.Builder.API.DTOs.Employee;
+using Newtonsoft.Json;
 
 namespace eComplianceAPIDemo
 {
@@ -41,6 +45,29 @@ namespace eComplianceAPIDemo
                         new Uri(new Uri(configuration.Server), uri),
                         WebRequestMethods.Http.Post,
                         values);
+            }
+            catch (WebException e)
+            {
+                HandleWebException(e, uri);
+                throw;
+            }
+        }
+
+        public byte[] UploadData(string uri, object data)
+        {
+
+            try
+            {
+                var json = JsonConvert.SerializeObject(data);
+                var rawData = Encoding.UTF8.GetBytes(json);
+                using (var client = GenerateClient())
+                {
+                    client.Headers["Content-Type"] = "application/json";
+                    return client.UploadData(
+                        new Uri(new Uri(configuration.Server), uri),
+                        WebRequestMethods.Http.Post,
+                        rawData);
+                }
             }
             catch (WebException e)
             {

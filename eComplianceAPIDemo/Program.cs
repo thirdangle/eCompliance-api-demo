@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using eComplianceAPIDemo.APIClient;
+using EC.Builder.API.DTOs.Employee;
 using EC.Builder.API.DTOs.Site;
 
 namespace eComplianceAPIDemo
@@ -15,6 +16,7 @@ namespace eComplianceAPIDemo
 
         private readonly APIConfiguration configuration;
         private EComplianceClient client;
+        private SiteResponseDto rootSite;
 
         public Program(string server)
         {
@@ -30,6 +32,7 @@ namespace eComplianceAPIDemo
             DisplayForms(FormTypes.Inspections);
             DisplayForms(FormTypes.Meetings);
             DisplayForms(FormTypes.Incidents);
+            UploadEmployeeThroughImport();
             DisplayEmployees();
         }
 
@@ -77,6 +80,7 @@ namespace eComplianceAPIDemo
         private void DisplayOrg(OrganizationDto organization)
         {
             WriteTitle("Sites in organization: " + organization.Name);
+            rootSite = organization.Sites[0];
             foreach (var site in organization.Sites)
                 Console.WriteLine(site.Name);
         }
@@ -92,6 +96,33 @@ namespace eComplianceAPIDemo
 
             if (forms.PagingInfo.TotalNumberOfItems > forms.PagingInfo.PageSize)
                 Console.WriteLine("plus {0} more", forms.PagingInfo.TotalNumberOfItems - forms.PagingInfo.PageSize);
+        }
+
+        private void UploadEmployeeThroughImport()
+        {
+            var importResult = client.Import(new[]
+            {
+                new EmployeeToImportRequestDto
+                {
+                    FirstName = "Bugsy",
+                    LastName = "Malone",
+                    Email = "bugsy.malone@fatsamsspeakeasy.example.com",
+                    EmployeeId = "bugs1925",
+                    Sites = new []
+                    {
+                        new EmployeeToImportSite
+                        {
+                            Name = rootSite.Name,
+                            JobProfiles = new [] {"Worker"}
+                        }
+                    }
+                }
+            });
+            WriteTitle("Import employees");
+            Console.WriteLine(
+                "Added {0} employees, updated {1}",
+                importResult.NumberOfEmployeesCreated,
+                importResult.NumberOfEmployeesUpdated);
         }
 
         private void DisplayEmployees()

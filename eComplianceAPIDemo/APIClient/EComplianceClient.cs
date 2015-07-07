@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Text;
 using eComplianceAPIDemo.Models;
@@ -71,6 +72,14 @@ namespace eComplianceAPIDemo.APIClient
                 { "ApiKey", configuration.ApiKey },
                 { "grant_type", "password" }
             });
+        }
+
+        public EmployeeImportSummaryDto Import(IEnumerable<EmployeeToImportRequestDto> employees)
+        {
+            var url = configuration.Server + "/employees/import";
+            var response = httpHelper.UploadData(url, employees);
+            var responseString = Encoding.UTF8.GetString(response);
+            return JsonConvert.DeserializeObject<EmployeeImportSummaryDto>(responseString);
         }
     }
 }

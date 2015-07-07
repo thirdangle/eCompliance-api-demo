@@ -16,14 +16,14 @@ namespace EC.Builder.API.DTOs.Employee
         public string PhoneNumber { get; set; }
         public string HireDate { get; set; }
         public string TerminationDate { get; set; }
-        public List<EmployeeToImportSite> Sites { get; set; }
+        public IEnumerable<EmployeeToImportSite> Sites { get; set; }
         public bool IsSingleSignOnUser { get; set; }
     }
 
     public class EmployeeToImportSite
     {
         public string Name { get; set; }
-        public List<string> JobProfiles { get; set;}
+        public IEnumerable<string> JobProfiles { get; set;}
         public string Permission { get; set; }
 
         public EmployeeToImportSite()
