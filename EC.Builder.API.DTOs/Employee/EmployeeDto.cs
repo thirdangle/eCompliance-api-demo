@@ -4,6 +4,7 @@ namespace EC.Builder.API.DTOs.Employee
 {
 	public class EmployeeDto : ResponseDto
 	{
+	    public string Id { get; set; }
 		public string EmployeeId { get; set; }
 
 		public string FirstName { get; set; }

@@ -92,5 +92,27 @@ namespace eComplianceAPIDemo
                 using (var reader = new StreamReader(e.Response.GetResponseStream()))
                     Console.WriteLine(reader.ReadToEnd().Replace(@"\r\n", "\n"));
         }
+
+        public byte[] PutData(string uri, object data)
+        {
+            try
+            {
+                var json = JsonConvert.SerializeObject(data);
+                var rawData = Encoding.UTF8.GetBytes(json);
+                using (var client = GenerateClient())
+                {
+                    client.Headers["Content-Type"] = "application/json";
+                    return client.UploadData(
+                        new Uri(new Uri(configuration.Server), uri),
+                        WebRequestMethods.Http.Put,
+                        rawData);
+                }
+            }
+            catch (WebException e)
+            {
+                HandleWebException(e, uri);
+                throw;
+            }
+        }
     }
 }

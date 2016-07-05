@@ -34,7 +34,10 @@ namespace eComplianceAPIDemo
             DisplayForms(FormTypes.Incidents);
             UploadEmployeeThroughImport();
             DisplayEmployees();
+            UpdateEmployee();
         }
+
+        
 
         private void Configure()
         {
@@ -136,6 +139,22 @@ namespace eComplianceAPIDemo
 
             if (employees.PagingInfo.TotalNumberOfItems > employees.PagingInfo.PageSize)
                 Console.WriteLine("plus {0} more", employees.PagingInfo.TotalNumberOfItems - employees.PagingInfo.PageSize);
+        }
+
+        private void UpdateEmployee()
+        {
+            var employees = client.GetEmployees();
+
+            var employee = employees.Values.First(x => x.EmailAddress == "bugsy.malone@fatsamsspeakeasy.example.com");
+
+            employee.FirstName = employee.FirstName + "2";
+
+            WriteTitle($"Updating employee #{employee.Id}");
+            client.UpdateEmployee(employee);
+
+            employee = client.GetEmployee(employee.Id);
+
+            Console.WriteLine($"{employee.FirstName} {employee.LastName} <{employee.EmailAddress}>");
         }
 
         private static void WriteTitle(string text)

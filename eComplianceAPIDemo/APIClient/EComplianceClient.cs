@@ -81,5 +81,19 @@ namespace eComplianceAPIDemo.APIClient
             var responseString = Encoding.UTF8.GetString(response);
             return JsonConvert.DeserializeObject<EmployeeImportSummaryDto>(responseString);
         }
+
+        public void UpdateEmployee(EmployeeDto employee)
+        {
+            var url = configuration.Server + "/employees";
+            var response = httpHelper.PutData(url, employee);
+        }
+
+        public EmployeeDto GetEmployee(string id)
+        {
+            var url = configuration.Server + "/employees/" + id;
+            var response = httpHelper.DownloadData(url);
+            var responseString = Encoding.UTF8.GetString(response);
+            return JsonConvert.DeserializeObject<EmployeeDto>(responseString);
+        }
     }
 }
